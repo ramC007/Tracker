@@ -1,0 +1,277 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTree.cshtml";
+
+}
+
+
+<link href="~/Content/DataTables-1.10.12/media/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<link href="~/Content/plugins/Jquery-ui.css" rel="stylesheet" />
+<script src="~/Content/plugins/Jquery1.12.1.js"></script>
+<script src="~/Content/plugins/Jquery1.12.4.js"></script>
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LeaveRequest</title>
+    <style>
+        .bootstrap-iso .form-control:focus {
+            border-color: #5cb85c;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+        }
+
+        .bootstrap-iso .has-error .form-control:focus {
+            box-shadow: none;
+            -webkit-box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3>&nbsp; Leave Request Page</h3>
+    </div>
+    <div class="container">
+        <div class="form-group">
+            <div class="col-xs-2">
+                <label>Name:</label>
+                <input type="text" id="Name" class="form-control" placeholder="Name" />
+
+            </div>
+            <div class="col-xs-2">
+                <label>Designation:</label>
+                <input type="text" id="Designation" class="form-control" placeholder="Designation" />
+            </div>
+            <div class="col-xs-2">
+                <label>Reporting Manager:</label>
+                <input type="text" id="Manager" class="form-control" placeholder="Manager" />
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <div class="container">
+        <div class="form-group">
+            <div class="col-xs-2">
+                <label>Leave Type:</label>
+                <input type="text" id="leavetype" class="form-control" placeholder="Leave Type" />
+            </div>
+            <div class="col-xs-2">
+                <label>From Date:</label>
+                <input type="text" id="TextBox1" class="form-control" placeholder="From Date:" />
+            </div>
+            <div class="col-xs-2">
+                <label>To Date:</label>
+                <input type="text" id="TextBox2" class="form-control" placeholder="To Date:" />
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <div class="container">
+        <div class="form-group">
+            <div class="col-xs-2">
+                <label>No Of Days:</label>
+                <input type="text" id="TextBox3" class="form-control" placeholder="No Of Days:" disabled />
+            </div>
+            <div class="col-xs-2">
+
+            </div>
+            <div class="col-xs-2">
+
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <div class="container">
+        <div class="form-group">
+            <div class="col-xs-6">
+                <label>Leave Discription:</label>
+                <textarea class="form-control" rows="3" id="LeaveDescription" placeholder="Leave Discription"></textarea>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="container">
+        <div class="form-group">
+            <div class="col-xs-2">
+
+            </div>
+            <div class="col-xs-2">
+
+            </div>
+            <div class="col-xs-2">
+                <div class="text-right">
+                    <input type="submit" class="btn btn-success" id="send" value="Send">
+                    <input type="submit" class="btn btn-warning" id="Cancel" value="Cancel">
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <div class="bs-example table-responsive" style="background-color:lightgray">
+        <table id="Datatable" class="display" style="border: 1px; margin: 2px; color: green">
+            <thead align="center">
+                <tr align="center" bgcolor="orange" style="font-size: 12px; color: Maroon; font-weight: bold;">
+                    <th>
+                        LeaveType Type
+                    </th>
+                    <th>
+                        From Period
+                    </th>
+                    <th>
+                        To Period
+                    </th>
+                    <th>
+                        Eligible
+                    </th>
+                    <th>
+                        Available
+                    </th>
+                    <th>
+                        Balance
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+    <div class="container">
+
+
+        @*<p> Type of Leave	:   Privileged Leave/ Earned Leave	            : Casual Leave</p>
+            <p>  Quantum per year:	30 after 12 months continuous employment	: 14 days</p>
+            <p>  Entitlement     :	5 days after 3months employment on completion of of 60 days working in that period	: During the year</p>
+            <p> Accumulation    :	90 days in 3 years	                        : Not allowed</p>*@
+
+
+    </div>
+</body>
+</html>
+@*Have to download the script .. Datepicker and jquery (This is IMPORTANT)*@
+
+
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Content/DataTables-1.10.12/media/js/jquery.dataTables.min.js"></script>
+
+@*<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+
+<script type="text/javascript">
+
+  
+
+    $("#Datatable").dataTable({
+      
+        "sAjaxSource": '/Leave/Grid2',
+
+        "bDestroy": true,
+        "paging": false,
+        "bFilter": false,
+        "bInfo": false,
+        "pagingType": 'full_numbers',
+        "destroy": true,
+
+        "aoColumns": [
+                 { "sName": "" },
+                 { "sName": "" },
+                 { "sName": "" },
+                 { "sName": "" },
+                 { "sName": "" },
+                 { "sName": "" }                 
+
+        ]
+    });
+
+
+
+
+    $("#TextBox1").datepicker({
+        minDate: 0,
+        maxDate: '+1Y+6M',
+        onSelect: function (dateStr) {
+            var min = $(this).datepicker('getDate'); // Get selected date
+            $("#TextBox2").datepicker('option', 'minDate', min || '0'); // Set other min, default to today
+        }
+    });
+
+    $("#TextBox2").datepicker({
+        minDate: '0',
+        maxDate: '+1Y+6M',
+        onSelect: function (dateStr) {
+            var max = $(this).datepicker('getDate'); // Get selected date
+            $('#datepicker').datepicker('option', 'maxDate', max || '+1Y+6M'); // Set other max, default to +18 months
+            var start = $("#TextBox1").datepicker("getDate");
+            var end = $("#TextBox2").datepicker("getDate");
+            var days = (end - start) / (1000 * 60 * 60 * 24);
+            $("#TextBox3").val(days);
+        }
+    });
+
+
+
+</script>
+
+<script>
+    $(function () {
+        var availableList = [
+         "Casual Leave",
+         "Sick Leave",
+         "Maternity Leave",
+         "Privileged Leave"
+        ];
+        $("#leavetype").autocomplete({
+            source: availableList
+        });
+    });
+</script>
+
+<script type="text/javascript">
+
+    $("#Cancel").click(function () {
+                 ClearUI();
+
+             });
+
+    $("#send").click(function () {
+
+        var Name = $("#Name").val();
+        var Designation = $("#Designation").val();
+        var Manager = $("#Manager").val();
+        var LeaveType = $("#leavetype").val();
+        var FromDate = $("#TextBox1").val();
+        var ToDate = $("#TextBox2").val();
+        var NoOfDays = $("#TextBox3").val();
+        var LeaveDescription = $("#LeaveDescription").val();
+
+
+        $.ajax({
+
+            url: '../Leave/LeaveSave',
+            type: 'post',
+            data: { Name: Name, Designation: Designation, Manager: Manager, LeaveType: LeaveType, FromDate: FromDate, ToDate: ToDate, NoOfDays: NoOfDays, LeaveDescription: LeaveDescription },
+
+            success: function (data) {
+                alert("saved");
+
+            }
+
+        });
+
+    });
+
+
+
+
+</script> 

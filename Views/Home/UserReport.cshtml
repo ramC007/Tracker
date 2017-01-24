@@ -1,0 +1,295 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<link href="~/Content/DataTables-1.10.12/media/css/jquery.dataTables.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+
+<html>
+<head>
+  
+</head>
+<body>
+
+
+
+
+    <br />
+    <br />
+
+
+
+    <div class="container-fluid">
+        <h1> Daily Activity Report</h1>
+        <div class="col-lg-12">
+
+           
+            <div class="form-group">
+                <div class="col-xs-2">
+                    <label for="User id">User ID:</label>
+                    <input class="form-control" id="ReportID" type="text" placeholder="User ID">
+                </div>
+                <div class="col-xs-2">
+                    <label for="Uname">User Name:</label>
+                    <input class="form-control" id="Uname" type="text" placeholder="Username">
+                </div>
+                <div class="col-xs-2">
+                    <label for="Rerportin_To">Reporting Manager:</label>
+                    <input class="form-control" id="Rerportin_To" type="text" placeholder="Reporting Manager">
+                </div>
+                <div class="col-xs-2">
+                    <label for="Date">Current Date:</label>
+                    <input class="form-control" id="Date" type="text" value="@DateTime.Now.ToString("MM/dd/yyyy")" placeholder="Current Date" >
+                </div>
+                <div class="col-xs-2">
+                    <label for="From_Time">From Time:</label>
+                    <input class="form-control" id="From_Time" type="text" placeholder="From Time">
+                </div>
+                <div class="col-xs-2">
+                    <label for="To_Time">To Time:</label>
+                    <input class="form-control" id="To_Time" type="text" placeholder="To Time">
+                </div>
+
+            </div>
+
+
+            <br />
+            <br />
+            <div class="col-xs-12">
+                <br />
+                <label for="Description">Issue Description</label>
+
+
+                <textarea class="form-control" rows="2" id="discription" placeholder="Issue Description"></textarea>
+                <br />
+                <div class="text-left">
+                    <input type="submit" class="btn btn-success" id="subtab" value="Add">
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <br />
+
+        <table id="Datatable" class="display" style="border: 1px; margin: 2px; color: green">
+            <thead align="center">
+                <tr align="center" bgcolor="#C0C6C3" style="font-size: 12px; color: Maroon; font-weight: bold;">
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        User Name
+                    </th>
+                    <th>
+                        Reporting To
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        From Time
+                    </th>
+                    <th>
+                        To Time
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Action
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+    <div class="text-right">
+        <input type="submit" class="btn btn-success" id="addtab" value="Save">
+        <input type="submit" class="btn btn-warning" id="cancel" value="Cancel">
+    </div>
+
+</body>
+
+</html>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+
+<script src="~/Content/DataTables-1.10.12/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+ 
+
+    $(function () {
+        $("#Date").datepicker();
+    });
+
+
+
+    $('#From_Time').timepicker({ 'scrollDefault': 'now' });
+    $('#To_Time').timepicker({ 'scrollDefault': 'now' });
+
+
+
+    $("#Datatable").dataTable({
+
+        "sAjaxSource": "../Home/grid",
+
+        "bDestroy": true,
+        "pagingType": 'full_numbers',
+      
+        "scrollCollapse": true,
+        "orderFixed": [ 0, 'asc' ],
+
+        "destroy": true,
+        
+       
+
+        "aoColumns": [
+
+
+
+                 { "sName": "", "bVisible": false },
+                { "sName": "" },
+                { "sName": "" },
+                { "sName": "" },
+                { "sName": "" },
+                { "sName": "" },
+                { "sName": "" },
+                { "sName": "" }
+
+
+        ]
+
+    });
+
+  
+
+    $("#subtab").click(function () {
+        debugger
+
+        var ReportID = $("#ReportID").val();
+        var UserName = $("#Uname").val();
+        var Reporting_To = $("#Rerportin_To").val();
+        var Date = $("#Date").val();
+        var From_Time = $("#From_Time").val();
+        var To_TIme = $("#To_Time").val();
+        var discription = $("#discription").val();
+
+
+        if (ReportID == "") {
+            alert("Enter ReportID");
+            $("#ReportID").focus();
+            return false;
+        }
+        if (UserName == "") {
+            alert("Enter UserName");
+            $("#Uname").focus();
+            return false;
+        }
+        if (Reporting_To == "") {
+            alert("Enter the Reporting manager");
+            $("#Rerportin_To").focus();
+            return false;
+        }
+        if (Date == "") {
+            alert("Enter date");
+            $("#Date").focus();
+            return false;
+        }
+        if (From_Time == "") {
+            alert("Enter From time");
+            $("#From_Time").focus();
+            return false;
+        }
+        if (To_TIme == "") {
+            alert("Enter To time");
+            $("#To_Time").focus();
+            return false;
+        }
+        if (discription == "") {
+            alert("Enter Discription");
+            $("#discription").focus();
+            return false;
+        }
+        $.ajax({
+
+            url: '../Home/Save',
+            Type: 'Post',
+            data: { ReportID: ReportID, UserName: UserName, Reporting_To: Reporting_To, Date: Date, From_Time: From_Time, To_Time: To_TIme, discription: discription },
+
+            success: function (data) {
+                alert("Saved SuccessFully")
+                window.location.href = "../Home/UserReport";
+            }
+
+
+
+
+        });
+
+
+
+    });
+
+
+
+    
+    $("#Datatable tbody").delegate("#ImgDel", "click", function () {
+      //  alert("check");
+        debugger
+
+        var ipos = $(this).closest('tr').index();
+        var Maintable = $('#Datatable').dataTable();
+        var adata = Maintable.fnGetData(ipos);
+        var tblid = adata[0];
+
+        $.ajax({
+
+            url: '../Home/Delete',
+            type: 'post',
+            data: { ReportID: tblid },
+            success: function (ramu) {
+                Datatable.ajax.reload();
+                alert(ramu);
+                table();
+                //window.location.href = "../Home/UserReport";
+            }
+        
+
+        });
+
+    });
+
+
+    $("#addtab").click(function () {
+    
+        window.location.href = "../Home/WestUserReport"
+
+
+
+    });
+    $("#cancel").click(function () {
+  
+        window.location.href = "../Home/WestUserReport"
+
+
+
+    });
+
+
+
+
+</script>

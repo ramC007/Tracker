@@ -1,0 +1,212 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+
+    
+
+    
+</head>
+<body>
+
+        
+    <div class="container">
+        <h1>PROFILE</h1>
+        <div class="form-group">
+            <div class="col-xs-2">
+                <label for="Name">Name:</label>
+                <input class="form-control" id="Name" type="text" placeholder="Name">
+            </div>
+            <div class="col-xs-2">
+                <label for="DOB">DOB:</label>
+                <input class="form-control" id="DOB" type="date" placeholder="DOB">
+            </div>
+            <div class="col-xs-2">
+                <label for="Age">Age:</label>
+                <input class="form-control" id="Age" type="text" placeholder="Age">
+
+            </div>  
+            @*<div class="col-xs-2">
+                <label for="Email">Email</label>
+                <input class="form-control" id="Email" type="email" placeholder="Email">
+            </div>
+            <div class="col-xs-2 col-lg-2">
+                <label for="PhoneNumber">Phone Number</label>
+                <input class="form-control" id="PhoneNumber" type="text" placeholder="PhoneNumber">
+            </div>*@
+            @*<div class="col-xs-2">
+                <label for="Address">Address</label>
+                <input class="form-control" id="Address" type="text" placeholder="Address">
+            </div>*@
+            <div class="col-xs-2">
+                <label for="JoinDate">Date of Join:</label>
+                <input class="form-control" id="JoinDate" type="date" placeholder="Date of Join">
+            </div>
+            <div class="col-xs-2">
+                <label for="Gender">Gender:</label>
+                <input class="form-control" id="Gender" type="text" placeholder="Gender">
+              
+            </div>           
+         
+        </div>
+        <br />
+
+
+       
+       
+       
+        
+    </div>
+    <br />
+    <div class="container">
+        <div class="form-group">
+            <div class="col-xs-2">
+                <label>Street 1:</label>
+                <input type="text" id="street" class="form-control" placeholder="Street 1" />
+
+            </div>
+            <div class="col-xs-2">
+                <label>Street 2:</label>
+                <input type="text" id="txtdes" class="form-control" placeholder="Street 2" />
+            </div>
+            <div class="col-xs-2">
+                <label>City:</label>
+                <input type="text" id="txtman" class="form-control" placeholder="City" />
+            </div>
+            <div class="col-xs-2">
+                <label>State:</label>
+                <input type="text" id="txtman" class="form-control" placeholder="State" />
+            </div>
+            <div class="col-xs-2">
+                <label>Pin:</label>
+                <input type="text" id="txtman" class="form-control" placeholder="Pin" />
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <div class="container">
+        <div class="form-group">
+            
+            <div class="col-xs-2 col-lg-2">
+                <label for="PhoneNumber">Phone Number:</label>
+                <input class="form-control" id="PhoneNumber" type="text" placeholder="Phone">
+            </div>
+            
+            <div class="col-xs-2 col-lg-2">
+                <label for="Mobile">Mobile:</label>
+                <input class="form-control" id="Mobile" type="text" placeholder="Mobile">
+            </div>
+            <div class="col-xs-2">
+                <label for="Email">Email:</label>
+                <input class="form-control" id="Email" type="email" placeholder="Email">
+            </div>
+            
+        </div>
+        <div class="text-right">
+            <br />
+            <input type="submit" class="btn btn-success" id="button" value="Save">
+            <input type="submit" class="btn btn-warning" id="button" value="Cancel">
+            <br />
+            <br />
+        </div>
+    </div>
+
+    <div class="container">
+        <h3>Team members under you</h3>
+        <div class="bs-example table-responsive" style="background-color:wheat">
+            <table id="empGrid" class="table table-striped table-bordered table-hover" style="width: 100%; color:cornflowerblue">
+                <thead>
+                    <tr>
+                        <th>
+                            Employee ID
+                        </th>
+                        <th>
+                            Employee Name
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Phone
+                        </th>
+                        <th>
+                            Join Date
+                        </th>
+                        <th>
+                            Gender
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+    $("#button").click(function () {
+
+        var Name = $("#Name").val();
+        alert(Name);
+        var Email = $("#Email").val();
+        alert(Email);
+        var PhoneNumber = $("#PhoneNumber").val();
+        alert(PhoneNumber);
+        var JoinDate = $("#JoinDate").val();
+        alert(JoinDate);
+        var Gender = $("#Gender").val();
+        alert(Gender);
+
+        if (Name == "") {
+            alert("Name Is Required");
+            $("#Name").focus();
+            return false;
+        }
+        if (Email == "") {
+            alert("Email Is Required");
+            $("#Email").focus();
+            return false;
+        }
+        if (PhoneNumber == "") {
+            alert("PhoneNumber Is Required");
+            $("#PhoneNumber").focus();
+            return false;
+        }
+        if (JoinDate == "") {
+            alert("JoinDate Is Required");
+            $("#JoinDate").focus();
+            return false;
+        }
+        if (Gender == "") {
+            alert("Gender Is Required");
+            $("#Gender").focus();
+            return false;
+        }
+
+        $.ajax({
+
+            url: '../Home/UserSave',
+            type: 'POST',
+            data: { Name: Name, Email: Email, PhoneNumber: PhoneNumber, JoinDate: JoinDate, Gender: Gender },
+
+
+            success: function (data) {
+                alert("Saved");
+            }
+
+           
+
+
+        });
+     });
+    
+</script>

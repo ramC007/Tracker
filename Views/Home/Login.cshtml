@@ -1,0 +1,112 @@
+﻿@{
+    Layout = null;
+}
+
+
+<link href="~/Content/Script/style.css" rel="stylesheet" />
+<link href="~/Content/Script/ben.less" rel="stylesheet" />
+<head>
+    <style type="text/css">
+
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="container">
+            <h1>SYSU TECH</h1>
+            <h1>Welcome</h1>
+             
+            <form class="form">
+                <input type="text" placeholder="Username" id="LogName">
+                <input type="password" placeholder="Password" id="pwdId">
+                <button type="submit" id="login-button">Login</button>
+            </form>
+        </div>
+
+        <ul class="bg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+</body>
+
+
+
+
+<script src="~/Content/Script/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+
+
+
+    $("#login-button").click(function (event) {
+        event.preventDefault();
+
+        $('form').fadeOut(1000);
+        $('.wrapper').addClass('form-success');
+
+        var LogName = $("#LogName").val();
+        alert(LogName);
+        var Password = $("#pwdId").val();
+        alert(Password);
+
+        if (LogName == "") {
+            alert("name");
+            UserName.focus();
+            return false;
+        }
+        if (Password == "") {
+            alert("password");
+            Password.focus();
+            return false;
+        }
+
+        $.ajax({
+            url: '../Home/Dlt',
+            type: 'Post',
+            data: { LogName: LogName, Password: Password },
+
+            success: function (data) {
+                //alert("Saved");
+               if (LogName == "allen" & Password == "allen") {
+               // if(data.success==1){
+
+                    window.location.href = "../Home/Index";
+                }
+                else {
+                    //alert("username passwaord incorrect");
+                    //$("#LogName").focus("");
+                    //$("#Password").val("");
+                    window.location.href = "../Home/Login";
+                }
+                }
+
+        });
+
+
+    });
+
+
+
+</script>

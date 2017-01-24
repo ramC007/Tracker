@@ -1,0 +1,321 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTree.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <style>
+          #errorBox {
+            color: #F00;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+
+    </div>
+    <div class="container">
+        <h3>Personal</h3>
+        <div class="form-group">
+            <div class="col-xs-3">
+                <label>First Name</label>
+                <input type="text" id="FirstName" class="form-control" placeholder="First Name" />
+
+            </div>
+            <div class="col-xs-3">
+                <label>Last Name:</label>
+                <input type="text" id="LastName" class="form-control" placeholder="Last name" />
+            </div>
+            <div class="col-xs-3">
+                <label>Gender</label>
+
+                <select class="form-control" id="Gender">
+                    <option>----Select----</option>
+                    <option id="male">Male</option>
+                    <option id="female">Female</option>
+                </select>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="form-group">
+            <div class="col-xs-3">
+                <label>Date of Birth</label>
+                <input type="date" id="DateOfBirth" class="form-control" placeholder="DOB" />
+            </div>
+            <div class="col-xs-3">
+                <label>Mobile</label>
+                <input type="text" id="Mobile" class="form-control" placeholder="Mobile" />
+
+            </div>
+            <div class="col-xs-3">
+                <label>Landline</label>
+                <input type="text" id="Landline" class="form-control" placeholder="Landline" />
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+        <h3>Residential</h3>
+        <div class="form-group">
+            <div class="col-xs-3">
+                <label>Street 1</label>
+                <input type="text" id="Street_1" class="form-control" placeholder="Street 1" />
+            </div>
+            <div class="col-xs-3">
+                <label>Street 2</label>
+                <input type="text" id="Street_2" class="form-control" placeholder="Street 2" />
+
+            </div>
+            <div class="col-xs-3">
+                <label>State</label>
+                <input type="text" id="State" class="form-control" placeholder="State" />
+            </div>
+
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="form-group">
+            <div class="col-xs-3">
+                <label>City</label>
+                <input type="text" id="City" class="form-control" placeholder="City" />
+            </div>
+            <div class="col-xs-3">
+                <label>Country</label>
+                <input type="text" id="Country" class="form-control" placeholder="Country" />
+
+            </div>
+            <div class="col-xs-3">
+                <label>Pin Code</label>
+                <input type="text" id="PinCode" class="form-control" placeholder="Pin Code" />
+            </div>
+
+        </div>
+
+    </div>
+    <div class="container">
+        <h3>Login</h3>
+        <div class="form-group">
+            <div class="col-xs-3">
+                <label>User Name</label>
+                <input type="text" id="UserName" class="form-control" placeholder="User name" />
+            </div>
+            <div class="col-xs-3">
+                <label>Email</label>
+                <input type="text" id="Email" class="form-control" placeholder="Email" />
+
+            </div>
+            <div class="col-xs-3">
+                <label>Re Enter Mail</label>
+                <input type="text" id="captcha" class="form-control" placeholder="Re Mail " />
+            </div>
+
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="form-group">
+            <div class="col-xs-3">
+                <label>Password</label>
+                <input type="password" id="Password" class="form-control" placeholder="Password" />
+            </div>
+            <div class="col-xs-3">
+                <label>Re-Enter Password</label>
+                <input type="password" id="Re_Enter_Password" class="form-control" placeholder="Re-Password" />
+
+            </div>
+            <div class="col-xs-3">
+                <label>Captcha</label>
+                <input type="text" id="reemail" class="form-control" placeholder="Captcha " />
+            </div>
+
+        </div>
+
+    </div>
+    <br />
+    <div class="container">
+        <div class="form-group">
+            <div class="col-xs-3">
+                <input type="button" value="Submit" class="btn btn-success" id="submit" />
+                <input type="button" value="Cancel" class="btn btn-warning" id="Cancel" />
+                <div id="errorBox">
+                </div>
+            </div>
+           
+           
+
+
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+
+    debugger
+
+    $("#submit").click(function () {
+        var emailRegex = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+
+        var FirstName = $("#FirstName").val();
+        var LastName = $("#LastName").val();
+        var Gender = $("#Gender").val();
+        var DateOfBirth = $("#DateOfBirth").val();
+        var Mobile = $("#Mobile").val();
+        var Landline = $("#Landline").val();
+        var Street_1 = $("#Street_1").val();
+        var Street_2 = $("#Street_2").val();
+        var State = $("#State").val();
+        var City = $("#City").val();
+        var Country = $("#Country").val();
+        var PinCode = $("#PinCode").val();
+        var UserName = $("#UserName").val();
+        var Email = $("#Email").val();
+        var reemail = $("#reemail");
+        var Password = $("#Password").val();
+
+        var Re_Enter_Password = $("#Re_Enter_Password").val();
+
+
+        if ($("#FirstName").val() == "") {
+            $("#FirstName").focus();
+            $("#errorBox").html("enter the First Name");
+            return false;
+        } else if ($("#LastName").val() == "") {
+            $("#LastName").focus();
+            $("#errorBox").html("enter the Last Name");
+            return false;
+        }
+
+        else if ($("#Gender").val() == "") {
+            $("#Gender").focus();
+            $("#errorBox").html("enter the Gender");
+            return false;
+        }
+
+
+        else if ($('#DateOfBirth').val() == "") {
+            $("#DateOfBirth").focus();
+            $("#errorBox").html("Enter the DateOfBirth");
+            return false;
+        }
+        else if ($('#Mobile').val() == "") {
+            $("#Mobile ").focus();
+            $("#errorBox").html("Enter the Mobile ");
+            return false;
+        }
+        else if ($('#Landline').val() == "") {
+            $("#Landline  ").focus();
+            $("#errorBox").html("Enter the Landline  ");
+            return false;
+        }
+        else if ($('#Street_1').val() == "") {
+            $("#Street_1  ").focus();
+            $("#errorBox").html("Enter the Street_1  ");
+            return false;
+        }
+        else if ($('#Street_2').val() == "") {
+            $("#Street_2 ").focus();
+            $("#errorBox").html("Enter the Street_2 ");
+            return false;
+        }
+        else if ($('#State ').val() == "") {
+            $("#State   ").focus();
+            $("#errorBox").html("Enter the State");
+            return false;
+        }
+        else if ($('#City  ').val() == "") {
+            $("#City    ").focus();
+            $("#errorBox").html("Enter the City ");
+            return false;
+        } else if ($('#Country  ').val() == "") {
+            $("#Country ").focus();
+            $("#errorBox").html("Enter the Country ");
+            return false;
+        }
+        else if ($('#PinCode   ').val() == "") {
+            $("#PinCode  ").focus();
+            $("#errorBox").html("Enter the PinCode  ");
+            return false;
+        }
+        else if ($('#UserName   ').val() == "") {
+            $("#UserName  ").focus();
+            $("#errorBox").html("Enter the UserName  ");
+            return false;
+        }
+            // Eamil Validation 
+
+        else if ($("#Email").val() == "") {
+            $("#Email").focus();
+            $("#errorBox").html("enter the email");
+            return false;
+        } else if (!emailRegex.test(formEmail)) {
+            $("#Email").focus();
+            $("#errorBox").html("enter the valid email");
+            return false;
+        } else if ($('#reemail').val() == "") {
+            $("#reemail").focus();
+            $("#errorBox").html("re enter the  email");
+            return false;
+        } else if (!emailRegex.test(formreemail)) {
+            $("#reemail").focus();
+            $("#errorBox").html("re enter the valid email");
+            return false;
+        } else if (reemail != Email) {
+            $("#reemail").focus();
+            $("#errorBox").html("emails are not matching, re-enter again");
+            return false;
+        }
+
+        else if ($('#Password').val() == "") {
+            $("#Password").focus();
+            $("#errorBox").html("Enter the password");
+            return false;
+        }
+        else if ($(FirstName != '' && LastName != '' && Gender != '' && DateOfBirth != '' && Mobile != '' && Landline != '' && Street_1 != ''
+            && Street_2 != '' && State != '' && City != '' && Country != '' && PinCode != '' && UserName != '' && Email != '' && reemail != '' && Password != '')) {
+                $("#errorBox").html("form submitted successfully")
+            }
+
+
+
+        $.ajax({
+
+            url: '../Register/RegSave',
+            type: 'POST',
+            data: { FirstName: FirstName, LastName: LastName, Gender: Gender, DateOfBirth: DateOfBirth, Mobile: Mobile, Landline: Landline ,Street_1: Street_1,
+                  Street_2:Street_2,State:State,City:City,Country:Country,PinCode:PinCode,UserName:UserName,Email:Email,Password:Password,
+                  Re_Enter_Password: Re_Enter_Password},
+
+            success: function (data) {
+                alert("saved");
+            }
+
+
+
+
+        })
+
+
+    });
+
+
+
+</script>

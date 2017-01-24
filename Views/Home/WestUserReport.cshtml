@@ -1,0 +1,161 @@
+﻿<link href="~/Content/DataTables-1.10.12/media/css/jquery.dataTables.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>WestUserReport</title>
+</head>
+<body>
+    <div class="col-lg-10">
+        <h1>Daily Activity History</h1>       
+
+        <input type="button" class="btn btn-success" id="create" value="Add New Task" onclick="@("window.location.href='" + @Url.Action("UserReport", "Home") + "'");" />
+    <br />
+    </div>
+    <br />
+  
+    <div class="col-lg-12">
+        <br /> 
+        <table id="Datatable" class="display" style="border: 1px; margin: 2px; color: green">
+            <thead align="center">
+                <tr align="center" bgcolor="#C0C6C3" style="font-size: 12px; color: Maroon; font-weight: bold;">
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        User Name
+                    </th>
+                    <th>
+                        Reporting To
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        From Time
+                    </th>
+                    <th>
+                        To Time
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Action
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+<script src="~/Content/DataTables-1.10.12/media/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/s/bs/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.10,b-1.1.0,b-flash-1.1.0,b-html5-1.1.0,b-print-1.1.0,fh-3.1.0,sc-1.4.0/datatables.min.css"></script>
+<script src="https://cdn.datatables.net/s/bs/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.10,b-1.1.0,b-flash-1.1.0,b-html5-1.1.0,b-print-1.1.0,fh-3.1.0,sc-1.4.0/datatables.min.js"></script>
+<script type="text/javascript">
+
+
+
+    $("#create").click(function () {
+        alert("Check");
+
+
+        $("#Datatable").dataTable().fnClearTable();
+        $("#DataTable").dataTable().fnDraw();
+        //$('#btnSave').show();
+        //$('#btnUpdate').hide();
+        //$("#reportdate").val('');
+        //$("#fromtime").val('');
+        //$("#totime").val('');
+        //$("#UN").val('');
+        //$("#description").val('');
+        //$("#txtUDRID").val('');
+        //$('.tbl').dataTable().fnClearTable();
+        //$("#ref").val('');
+        //$("#reportto").val('');
+        //$('#mainTab a[href="#actionContent"]').tab('show');
+        //$("#myDataTable").dataTable().fnDraw();
+        //$("#changeUpCFlag").val(1);
+    });
+
+
+    $("#Datatable").dataTable({
+
+        "sAjaxSource": "../Home/grid",
+
+        "bDestroy": true,
+        "pagingType": 'full_numbers',
+       // "scrollY": "200px",
+        "scrollCollapse": true,
+        "orderFixed": [0, 'asc'],
+        "columnDefs": [{
+            targets: 'no-sort',
+            orderable: false
+        }],
+
+        "destroy": true,
+
+
+
+        "aoColumns": [
+
+
+
+                { "sName": "", "bVisible": false },
+                { "sName": "" },
+                { "sName": "" },
+                { "sName": "" },
+                { "sName": "" },
+                { "sName": "" },
+                { "sName": "" },
+                { "sName": "" }
+
+
+        ],
+        dom: '<"row"<"col-sm-6"Bl><"col-sm-6"f>>' +
+    '<"row"<"col-sm-12"<"table-responsive"tr>>>' +
+    '<"row"<"col-sm-5"i><"col-sm-7"p>>',
+        fixedHeader: {
+            header: true
+        },
+
+        buttons: {
+        buttons: [{
+            extend: 'print',
+            text: '<i class="fa fa-print"></i> Print',
+            title: $('h1').text(),
+            exportOptions: {
+                columns: ':not(.no-print)'
+            },
+            footer: true,
+            autoPrint: true
+        },
+        {
+            extend: 'pdf',
+            text: '<i class="fa fa-file-pdf-o"></i> PDF',
+            title: $('h1').text(),
+            exportOptions: {
+                columns: ':not(.no-print)'
+            },
+            footer: true
+        }],
+        dom: {
+            container: {
+                    className: 'dt-buttons'
+            },
+            button: {
+                    className: 'btn btn-default'
+            }
+        }
+    }
+    });
+
+
+
+</script>
